@@ -1,4 +1,5 @@
 Run the Atlas app:
+
 cd into/repo
 
 docker build --tag atlas .
