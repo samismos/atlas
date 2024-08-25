@@ -1,6 +1,8 @@
 Run the Atlas app:
 cd into/repo
+
 docker build --tag atlas .
+
 docker run --rm -d -p 3000:3000 atlas
 
 # Getting Started with Create React App
