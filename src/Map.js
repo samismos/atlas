@@ -6,7 +6,10 @@ import { MapContainer, TileLayer, Marker, Popup, GeoJSON, useMapEvents } from 'r
 import { Icon } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import { booleanPointInPolygon } from '@turf/turf';
-import { ZoomSlider, CountrySearchBar, OpenStationSwitch, FlagCard } from './AntComponents.js';
+import { ZoomSlider } from './components/ZoomSlider.js';
+import { CountrySearchBar } from './components/CountrySearchBar.js';
+import { OpenStationSwitch } from './components/OpenStationSwitch.js';
+import { FlagCard } from './components/FlagCard.js';
 
 
 const customIcon = new Icon({
@@ -24,10 +27,11 @@ const Map = () => {
   const [selectedCountryGeoJson, setSelectedCountryGeoJson] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isGeoJsonReady, setIsGeoJsonReady] = useState(false);
-  const [showOpenStations, setShowOpenStations] = useState(false);
+  // const [showOpenStations, setShowOpenStations] = useState(false);
   const [zoom, setZoom] = useState(7);
   const [isZooming, setIsZooming] = useState(false);
   const [mapCenter, setMapCenter] = useState(center);
+  const [countryPopup, setCountryPopup] = useState(null);
 
 
 
@@ -63,7 +67,7 @@ const Map = () => {
     }
 
     setIsLoading(false);
-  }, [selectedCountry, geojsonData, showOpenStations]);
+  }, [selectedCountry, geojsonData]);
 
   useEffect(() => {
     if (selectedCountryGeoJson) {
@@ -95,13 +99,14 @@ const Map = () => {
       if (clickedCountryFeature) {
         // Handle the selected country, e.g., highlight or show info
         setSelectedCountry(clickedCountryFeature.properties.ADMIN);
+        setCountryPopup();
       }
     }
   };
 
-  const handleShowOpenStationsChange = (event) => {
-    setShowOpenStations(event);
-  };
+  // const handleShowOpenStationsChange = (event) => {
+  //   setShowOpenStations(event);
+  // };
 
   function MapEventHandlers() {
     // Using isZooming flag to prevent rapid succession of zoom events,
@@ -157,7 +162,7 @@ const Map = () => {
   return (
     <div className="map-container">
       <div className="top-right-container">
-      <><OpenStationSwitch onSwitchChange={handleShowOpenStationsChange} showOpenStations={showOpenStations}/></>
+      {/* <><OpenStationSwitch onSwitchChange={handleShowOpenStationsChange} showOpenStations={showOpenStations}/></> */}
       <><CountrySearchBar onSelectCountry={handleCountryChange} selectedCountry={selectedCountry}/></>
       </div>
       <><ZoomSlider onZoomChange={setZoom} currentZoom={zoom} isZooming={isZooming}/></>
