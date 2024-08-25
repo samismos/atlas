@@ -15,7 +15,7 @@ function App() {
           <img src={'logo512.png'} className="App-logo" alt="logo" />
         </a>
       </header>
-      <div className="map-container"> {/* Use "className" instead of "class" */}
+      <div className="map-container">
         <Map />
       </div>
     </div>

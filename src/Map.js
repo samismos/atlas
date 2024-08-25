@@ -5,7 +5,6 @@ import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON, useMapEvents } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
-import teslaData from './data/tesla-sites.json';
 import { booleanPointInPolygon } from '@turf/turf';
 import { ZoomSlider, CountrySearchBar, OpenStationSwitch, FlagCard } from './AntComponents.js';
 
@@ -21,7 +20,6 @@ const center = [38.6588362, 23.0719843];
 
 const Map = () => {
   const [selectedCountry, setSelectedCountry] = useState('Greece');
-  const [filteredStations, setFilteredStations] = useState([]);
   const [geojsonData, setGeojsonData] = useState(null);
   const [selectedCountryGeoJson, setSelectedCountryGeoJson] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,15 +46,6 @@ const Map = () => {
 
     if (geojsonData && selectedCountry) {
       console.log('Selected country changed:', selectedCountry);
-      const filteredData = teslaData.filter((tesla) => {
-        if (!showOpenStations) {
-          return tesla.address?.country === selectedCountry;
-        } else {
-          return tesla.address?.country === selectedCountry && tesla.status === 'OPEN';
-        }
-      });
-      setFilteredStations(filteredData);
-
       const selectedCountryFeature = geojsonData.features.find(
         (feature) => feature.properties.ADMIN === selectedCountry
       );
@@ -70,7 +59,6 @@ const Map = () => {
         setSelectedCountryGeoJson(null);
       }
     } else {
-      setFilteredStations(teslaData);
       setSelectedCountryGeoJson(null);
     }
 
@@ -188,15 +176,6 @@ const Map = () => {
         ) : (
           <>
             {isGeoJsonReady &&  <GeoJSON data={selectedCountryGeoJson} key={JSON.stringify(selectedCountryGeoJson)} />}
-            {selectedCountry && (
-              <MarkerClusterGroup chunkedLoading>
-                {filteredStations.map((tesla) => (
-                  <Marker key={tesla.id} position={[tesla.gps.latitude, tesla.gps.longitude]} icon={customIcon}>
-                    <Popup>{tesla.name}<br />Status: {tesla.status}</Popup>
-                  </Marker>
-                ))}
-              </MarkerClusterGroup>
-            )}
             <MapEvent handleMapClick={handleMapClick} />
           </>
         )}
