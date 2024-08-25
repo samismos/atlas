@@ -1,10 +1,12 @@
-Run the Atlas app:
+# Run the Atlas app:
 
-cd into/repo
+### cd into/repo
 
-docker build --tag atlas .
+### docker build --tag atlas .
 
-docker run --rm -d -p 3000:3000 atlas
+### docker run --rm -d -p 3000:3000 atlas
+
+You can view the app by opening a browser and going to http://localhost:3000
 
 # Getting Started with Create React App
 
