@@ -1,0 +1,17 @@
+services:
+  atlas-ui:
+    build: ./atlas-ui/
+    ports:
+      - "3000:3000"
+    networks:
+      - atlas-network
+  atlas-server:
+    build: ./atlas-server/
+    ports:
+      - "3100:3100"
+    networks:
+      - atlas-network
+
+networks:
+  atlas-network:
+    driver: bridge      
