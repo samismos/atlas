@@ -2,9 +2,7 @@
 
 ### cd into/repo
 
-### docker build --tag atlas .
-
-### docker run --rm -d -p 3000:3000 atlas
+### docker compose up --build
 
 You can view the app by opening a browser and going to http://localhost:3000
 
