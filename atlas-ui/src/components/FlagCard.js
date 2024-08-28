@@ -27,7 +27,7 @@ function FlagCard({ selectedCountry }) {
         {!isMinimized ? (
           <div className='button-container'>
             <button className='flag-button' onClick={() => setIsMinimized(!isMinimized)}>
-            <span>View {selectedCountry}</span>
+            <span>{selectedCountry}</span>
     <div className="flag-icon top-right"><FaFlag /></div>
     <div className="flag-icon bottom-left"><FaFlag /></div>
             </button>
