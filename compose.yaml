@@ -9,6 +9,8 @@ services:
     depends_on:
       - atlas-ui
       - atlas-server
+    networks:
+      - atlas-network
 
   atlas-ui:
     build: ./atlas-ui/

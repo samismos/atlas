@@ -32,7 +32,7 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-app.get('/get-country-flag', async (req, res) => {
+app.get('/api/get-country-flag', async (req, res) => {
   try {
     let { selectedCountry } = req.query;
     if(selectedCountry == 'United States') {
