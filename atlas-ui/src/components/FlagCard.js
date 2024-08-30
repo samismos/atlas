@@ -11,7 +11,7 @@ function FlagCard({ selectedCountry }) {
   
     useEffect(() => {
       setIsLoading(true);
-      axios.get(`http://127.0.0.1:3100/get-country-flag?selectedCountry=${selectedCountry}`)
+      axios.get(`${process.env.REACT_APP_BASE_URI}/get-country-flag?selectedCountry=${selectedCountry}`)
         .then((response) => {
           setFlagInfo(response.data);
           setIsLoading(false);
@@ -27,7 +27,7 @@ function FlagCard({ selectedCountry }) {
         {!isMinimized ? (
           <div className='button-container'>
             <button className='flag-button' onClick={() => setIsMinimized(!isMinimized)}>
-            <span>View {selectedCountry}</span>
+            <span>{selectedCountry}</span>
     <div className="flag-icon top-right"><FaFlag /></div>
     <div className="flag-icon bottom-left"><FaFlag /></div>
             </button>

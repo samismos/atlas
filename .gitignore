@@ -1,0 +1,5 @@
+package-lock.json
+node_modules
+atlas-server/node_modules
+atlas-ui/node_modules
+atlas-ui/.env

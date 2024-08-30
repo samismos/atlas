@@ -4,7 +4,7 @@
 
 ### docker compose up --build
 
-You can view the app by opening a browser and going to http://localhost:3000
+You can view the app by opening a browser and going to http://localhost:80
 
 # Getting Started with Create React App
 

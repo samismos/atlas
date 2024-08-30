@@ -32,7 +32,7 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-app.get('/get-country-flag', async (req, res) => {
+app.get('/api/get-country-flag', async (req, res) => {
   try {
     let { selectedCountry } = req.query;
     if(selectedCountry == 'United States') {
@@ -45,14 +45,6 @@ app.get('/get-country-flag', async (req, res) => {
     const flagLink = countryCodeResponse.data[0]?.flags.svg;
     const flagAlt = countryCodeResponse.data[0]?.flags.alt;
     const population = countryCodeResponse.data[0]?.population;
-
-    // Step 2: Get the flag using the 2-letter code
-    /*const flagResponse = await axios.get(`https://flagsapi.com/${countryCode}/flat/64.png`, {
-      responseType: 'arraybuffer',
-      timeout: 5000,
-      withCredentials: true,
-    });
-    */
 
     // Send the country data to the client
     const package = {countryCode, flagLink, flagAlt, population};
