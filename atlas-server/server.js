@@ -46,14 +46,6 @@ app.get('/get-country-flag', async (req, res) => {
     const flagAlt = countryCodeResponse.data[0]?.flags.alt;
     const population = countryCodeResponse.data[0]?.population;
 
-    // Step 2: Get the flag using the 2-letter code
-    /*const flagResponse = await axios.get(`https://flagsapi.com/${countryCode}/flat/64.png`, {
-      responseType: 'arraybuffer',
-      timeout: 5000,
-      withCredentials: true,
-    });
-    */
-
     // Send the country data to the client
     const package = {countryCode, flagLink, flagAlt, population};
     res.send(package);

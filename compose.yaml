@@ -1,14 +1,25 @@
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "80:80"          # Exposing Nginx on port 80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Mount the custom Nginx config file
+    depends_on:
+      - atlas-ui
+      - atlas-server
+
   atlas-ui:
     build: ./atlas-ui/
-    ports:
-      - "3000:3000"
+    expose:
+      - 3000
     networks:
       - atlas-network
   atlas-server:
     build: ./atlas-server/
-    ports:
-      - "3100:3100"
+    expose:
+      - 3100
     networks:
       - atlas-network
 
